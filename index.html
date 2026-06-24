@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="EduTech Institute offers practical, job-ready training in Full Stack Development, Python, Data Science, and AI/ML with live projects and placement support." />
+  <meta name="theme-color" content="#2f855a" />
+  <title>EduTech Institute</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#2f855a;
+      --brand-dark:#0f2f24;
+      --brand-soft:#e8f5ee;
+      --accent:#a3d65c;
+      --text:#163126;
+      --muted:#5f7667;
+      --bg:#f5faf6;
+      --card:#ffffff;
+      --border:rgba(47,133,90,.12);
+      --shadow:0 12px 35px rgba(15,47,36,.08);
+      --radius:20px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 8px;
+      background: #fff;
+      color: #000;
+      padding: .75rem 1rem;
+      z-index: 1000;
+      border-radius: 10px;
+    }
+    .skip-link:focus { left: 12px; }
+
+    .topbar {
+      background: var(--brand-dark);
+      color: #e7f2ec;
+      font-size: 14px;
+    }
+
+    .navbar {
+      background: rgba(47,133,90,.96);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 6px 24px rgba(0,0,0,.12);
+    }
+
+    .navbar .nav-link {
+      color: rgba(255,255,255,.92) !important;
+      font-weight: 500;
+      margin: 0 8px;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link:focus {
+      color: var(--accent) !important;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(15,47,36,.82), rgba(47,133,90,.70)),
+        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem .9rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(10px);
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 4vw, 4.6rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      max-width: 12ch;
+    }
+
+    .hero p {
+      color: rgba(255,255,255,.88);
+      max-width: 58ch;
+      font-size: 1.08rem;
+    }
+
+    .btn-pill {
+      border-radius: 999px;
+      padding: .9rem 1.4rem;
+      font-weight: 700;
+    }
+
+    .btn-primary,
+    .btn-warning {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #163126;
+    }
+
+    .btn-primary:hover,
+    .btn-warning:hover {
+      background: #92c94d;
+      border-color: #92c94d;
+      color: #163126;
+    }
+
+    .btn-outline-primary {
+      color: var(--brand);
+      border-color: var(--brand);
+    }
+
+    .btn-outline-primary:hover {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto 44px;
+    }
+
+    .card-soft,
+    .contact-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .course-card {
+      transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+      border: 1px solid rgba(47,133,90,.12);
+      height: 100%;
+    }
+
+    .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 18px 44px rgba(15,47,36,.12);
+      border-color: rgba(47,133,90,.24);
+    }
+
+    .course-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-size: 1.55rem;
+      margin-bottom: 18px;
+      transition: transform .25s ease;
+    }
+
+    .course-card:hover .course-icon {
+      transform: scale(1.05);
+    }
+
+    .stat-box {
+      padding: 18px 10px;
+    }
+
+    .stat-box h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .stats {
+      background: linear-gradient(135deg, #2f855a, #1f6b47);
+      color: #fff;
+    }
+
+    .stats p {
+      margin-bottom: 0;
+      opacity: .9;
+    }
+
+    .feature-list .list-group-item {
+      border: 0;
+      padding-left: 0;
+      background: transparent;
+      color: var(--text);
+    }
+
+    .feature-list i {
+      color: var(--brand);
+      margin-right: .6rem;
+    }
+
+    .contact-box {
+      padding: 28px;
+    }
+
+    .form-control {
+      border-radius: 14px;
+      padding: .85rem 1rem;
+      border-color: rgba(15,23,42,.12);
+    }
+
+    .form-control:focus {
+      border-color: rgba(47,133,90,.45);
+      box-shadow: 0 0 0 .2rem rgba(47,133,90,.12);
+    }
+
+    .milestone-modern{
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 0 10px;
+    }
+
+    .milestone-track{
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom, rgba(47,133,90,.12), rgba(47,133,90,.55), rgba(47,133,90,.12));
+      border-radius: 999px;
+    }
+
+    .milestone-row{
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 90px 1fr;
+      align-items: center;
+      margin-bottom: 34px;
+    }
+
+    .milestone-row.left .milestone-box{
+      grid-column: 1;
+      justify-self: end;
+      max-width: 420px;
+    }
+
+    .milestone-row.right .milestone-box{
+      grid-column: 3;
+      justify-self: start;
+      max-width: 420px;
+    }
+
+    .milestone-marker{
+      grid-column: 2;
+      justify-self: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      border: 2px solid rgba(47,133,90,.18);
+      box-shadow: 0 14px 30px rgba(15,47,36,.10);
+      z-index: 2;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .milestone-marker span{
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-weight: 800;
+    }
+
+    .milestone-row.completed .milestone-marker span{
+      background: #dff4e8;
+      color: #198754;
+    }
+
+    .milestone-row.active .milestone-marker span{
+      background: #dcecff;
+      color: #0d6efd;
+      animation: markerPulse 1.8s infinite;
+    }
+
+    .milestone-row:hover .milestone-marker{
+      transform: scale(1.04);
+      box-shadow: 0 18px 36px rgba(15,47,36,.16);
+    }
+
+    .milestone-box{
+      background: rgba(255,255,255,.84);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(47,133,90,.12);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .milestone-box:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 20px 44px rgba(15,47,36,.12);
+    }
+
+    .milestone-top{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .milestone-top h5{
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: -.01em;
+    }
+
+    .milestone-box p{
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .milestone-pill{
+      padding: .45rem .8rem;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .milestone-pill.done{
+      background: #dff4e8;
+      color: #198754;
+    }
+
+    .milestone-pill.live{
+      background: #dcecff;
+      color: #0d6efd;
+    }
+
+    .milestone-pill.soon{
+      background: #eef2f7;
+      color: #6c757d;
+    }
+
+    .milestone-progress{
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(47,133,90,.10);
+      overflow: hidden;
+    }
+
+    .milestone-progress .progress-bar{
+      border-radius: 999px;
+    }
+
+    @keyframes markerPulse{
+      0%{ box-shadow: 0 0 0 0 rgba(13,110,253,.22); }
+      70%{ box-shadow: 0 0 0 14px rgba(13,110,253,0); }
+      100%{ box-shadow: 0 0 0 0 rgba(13,110,253,0); }
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      background: #25D366;
+      color: #fff;
+      border-radius: 50%;
+      z-index: 999;
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+      transition: transform .2s ease;
+      text-decoration: none;
+      font-size: 1.55rem;
+    }
+
+    .whatsapp:hover,
+    .whatsapp:focus {
+      transform: scale(1.08);
+      color: #fff;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      background: var(--brand-dark);
+      color: #b6c2d1;
+    }
+
+    @media (max-width: 991.98px) {
+      .hero {
+        min-height: auto;
+        padding: 120px 0 90px;
+      }
+      .navbar .nav-link {
+        margin: 0;
+        padding: .7rem 0;
+      }
+    }
+
+    @media (max-width: 767.98px){
+      .milestone-track{
+        left: 24px;
+        transform: none;
+      }
+      .milestone-row{
+        grid-template-columns: 56px 1fr;
+        margin-bottom: 22px;
+      }
+      .milestone-marker{
+        grid-column: 1;
+        width: 48px;
+        height: 48px;
+      }
+      .milestone-marker span{
+        width: 36px;
+        height: 36px;
+        font-size: .9rem;
+      }
+      .milestone-row.left .milestone-box,
+      .milestone-row.right .milestone-box{
+        grid-column: 2;
+        justify-self: stretch;
+        max-width: none;
+      }
+      .milestone-top{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#home">Skip to content</a>
+
+  <div class="topbar py-2">
+    <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+      <div><i class="bi bi-telephone me-2"></i>+91 98966 33881</div>
+      <div><i class="bi bi-envelope me-2"></i>info@edutech.com</div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#home">🎓 EduTech</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#milestone">Milestone</a></li>
+          <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn btn-warning btn-pill ms-lg-3 mt-3 mt-lg-0">Enroll Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7 fade-up show">
+          <span class="hero-badge mb-4">
+            <i class="bi bi-lightning-charge-fill"></i>
+            Admissions Open 2026
+          </span>
+
+          <h1 class="mb-4">Learn Skills That Build Your Future</h1>
+
+          <p class="lead mb-4">
+            Join industry-focused training in Full Stack Development, Python, Data Science, and AI/ML with live projects, mentorship, and placement support.
+          </p>
+
+          <div class="d-flex flex-column flex-sm-row gap-3">
+            <a class="btn btn-warning btn-pill" href="#courses">Explore Courses</a>
+            <a class="btn btn-outline-light btn-pill" href="#contact">Free Counselling</a>
+          </div>
+
+          <div class="d-flex flex-wrap gap-3 mt-5 text-white-50 small">
+            <span><i class="bi bi-check-circle-fill text-warning me-1"></i> Live projects</span>
+            <span><i class="bi bi-check-circle-fill text-warning me-1"></i> Internship certificate</span>
+            <span><i class="bi bi-check-circle-fill text-warning me-1"></i> Placement support</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up" id="about">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-title">About Us</h2>
+        <p class="section-subtitle">
+          We focus on practical training that helps students become job-ready with real-world projects, modern tools, and clear career guidance.
+        </p>
+      </div>
+
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200"
+            class="img-fluid rounded-4 shadow-sm"
+            alt="Students learning in a classroom">
+        </div>
+
+        <div class="col-md-6">
+          <h3 class="fw-bold mb-3">Why Students Choose Us</h3>
+          <p class="text-muted mb-4">Professional training designed to help learners move from concepts to confidence.</p>
+
+          <div class="list-group feature-list">
+            <div class="list-group-item"><i class="bi bi-check2-circle"></i>Live projects</div>
+            <div class="list-group-item"><i class="bi bi-check2-circle"></i>Internship certificate</div>
+            <div class="list-group-item"><i class="bi bi-check2-circle"></i>Job placement support</div>
+            <div class="list-group-item"><i class="bi bi-check2-circle"></i>Expert mentors</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up" id="milestone">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-title">Full Stack Milestone</h2>
+        <p class="section-subtitle">
+          Track progress through a structured learning journey from foundations to deployment.
+        </p>
+      </div>
+
+      <div class="milestone-modern">
+        <div class="milestone-track"></div>
+
+        <div class="milestone-row left completed">
+          <div class="milestone-marker"><span>01</span></div>
+          <div class="milestone-box">
+            <div class="milestone-top">
+              <h5>HTML, CSS & Bootstrap</h5>
+              <span class="milestone-pill done">Done</span>
+            </div>
+            <p>Build responsive layouts, strong UI foundations, and mobile-first pages.</p>
+            <div class="progress milestone-progress">
+              <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                   role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                   style="width:100%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="milestone-row right active">
+          <div class="milestone-marker"><span>02</span></div>
+          <div class="milestone-box">
+            <div class="milestone-top">
+              <h5>JavaScript Essentials</h5>
+              <span class="milestone-pill live">Current</span>
+            </div>
+            <p>Learn DOM, events, logic, and interactive frontend behavior.</p>
+            <div class="progress milestone-progress">
+              <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                   role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"
+                   style="width:72%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="milestone-row left upcoming">
+          <div class="milestone-marker"><span>03</span></div>
+          <div class="milestone-box">
+            <div class="milestone-top">
+              <h5>React Development</h5>
+              <span class="milestone-pill soon">Next</span>
+            </div>
+            <p>Create reusable components and build dynamic user interfaces.</p>
+            <div class="progress milestone-progress">
+              <div class="progress-bar bg-secondary"
+                   role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                   style="width:40%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="milestone-row right upcoming">
+          <div class="milestone-marker"><span>04</span></div>
+          <div class="milestone-box">
+            <div class="milestone-top">
+              <h5>Node.js, MongoDB & Deployment</h5>
+              <span class="milestone-pill soon">Next</span>
+            </div>
+            <p>Connect backend APIs, manage data, and deploy full applications.</p>
+            <div class="progress milestone-progress">
+              <div class="progress-bar bg-secondary"
+                   role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
+                   style="width:20%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats section py-5 fade-up">
+    <div class="container text-center">
+      <div class="row g-4">
+        <div class="col-6 col-lg-3 stat-box"><h2>500+</h2><p>Students</p></div>
+        <div class="col-6 col-lg-3 stat-box"><h2>50+</h2><p>Courses</p></div>
+        <div class="col-6 col-lg-3 stat-box"><h2>100+</h2><p>Projects</p></div>
+        <div class="col-6 col-lg-3 stat-box"><h2>95%</h2><p>Placement</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up" id="courses">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-title">Popular Courses</h2>
+        <p class="section-subtitle">
+          Industry-aligned programs built for practical learning, live projects, and career growth.
+        </p>
+      </div>
+
+      <div class="row g-4 align-items-stretch">
+        <div class="col-md-4">
+          <div class="card card-soft course-card p-4 h-100 position-relative overflow-hidden">
+            <span class="badge rounded-pill text-bg-primary position-absolute top-0 end-0 m-3">Most Popular</span>
+            <div class="course-icon"><i class="bi bi-code-slash"></i></div>
+            <h4 class="fw-bold mb-2">Full Stack Development</h4>
+            <p class="text-muted mb-3">HTML, CSS, JavaScript, React, Node, MongoDB</p>
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="badge text-bg-light border">Live Projects</span>
+              <span class="badge text-bg-light border">Internship</span>
+              <span class="badge text-bg-light border">Placement Support</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-auto">
+              <span class="badge text-bg-primary px-3 py-2">6 Months</span>
+              <a href="#contact" class="btn btn-sm btn-outline-primary rounded-pill stretched-link">Know More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card card-soft course-card p-4 h-100 position-relative overflow-hidden">
+            <span class="badge rounded-pill text-bg-success position-absolute top-0 end-0 m-3">Beginner Friendly</span>
+            <div class="course-icon"><i class="bi bi-filetype-py"></i></div>
+            <h4 class="fw-bold mb-2">Python Programming</h4>
+            <p class="text-muted mb-3">Django, Flask, NumPy, Pandas</p>
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="badge text-bg-light border">Core Python</span>
+              <span class="badge text-bg-light border">Django</span>
+              <span class="badge text-bg-light border">Projects</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-auto">
+              <span class="badge text-bg-success px-3 py-2">4 Months</span>
+              <a href="#contact" class="btn btn-sm btn-outline-success rounded-pill stretched-link">Know More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card card-soft course-card p-4 h-100 position-relative overflow-hidden">
+            <span class="badge rounded-pill text-bg-danger position-absolute top-0 end-0 m-3">Career Focused</span>
+            <div class="course-icon" style="background: rgba(220,53,69,.10); color: #dc3545;">
+              <i class="bi bi-bar-chart"></i>
+            </div>
+            <h4 class="fw-bold mb-2">Data Science</h4>
+            <p class="text-muted mb-3">AI, ML, Data Visualization, Analytics</p>
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <span class="badge text-bg-light border">Machine Learning</span>
+              <span class="badge text-bg-light border">Visualization</span>
+              <span class="badge text-bg-light border">Case Studies</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-auto">
+              <span class="badge text-bg-danger px-3 py-2">8 Months</span>
+              <a href="#contact" class="btn btn-sm btn-outline-danger rounded-pill stretched-link">Know More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up" id="contact">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">
+          Talk to our team for course guidance, batch details, and admission support.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-5">
+          <div class="contact-box h-100">
+            <h4 class="fw-bold mb-3">Institute Info</h4>
+            <p class="mb-2"><i class="bi bi-geo-alt me-2 text-success"></i>Yamuna Nagar, Haryana</p>
+            <p class="mb-2"><i class="bi bi-telephone me-2 text-success"></i>+91 98966 33881</p>
+            <p class="mb-0"><i class="bi bi-envelope me-2 text-success"></i>info@edutech.com</p>
+
+            <hr class="my-4">
+
+            <div class="d-grid gap-2">
+              <a href="https://wa.me/919896633881" target="_blank" class="btn btn-success btn-pill">
+                <i class="bi bi-whatsapp me-2"></i>Chat on WhatsApp
+              </a>
+              <a href="tel:+919896633881" class="btn btn-outline-primary btn-pill">
+                <i class="bi bi-telephone me-2"></i>Call Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <div class="contact-box">
+            <h4 class="fw-bold mb-3">Enquiry Form</h4>
+            <form>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Name</label>
+                  <input id="name" class="form-control" type="text" placeholder="Enter your name" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Email</label>
+                  <input id="email" class="form-control" type="email" placeholder="Enter your email" required>
+                </div>
+                <div class="col-12">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea id="message" class="form-control" rows="5" placeholder="Tell us what course you're interested in" required></textarea>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary btn-pill w-100" type="submit">Submit Enquiry</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-4 text-center">
+    <div class="container">© 2026 EduTech Institute | All Rights Reserved</div>
+  </footer>
+
+  <a class="whatsapp" href="https://wa.me/919896633881" target="_blank" aria-label="Chat on WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <script>
+    const elements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.15 });
+
+    elements.forEach(el => observer.observe(el));
+
+    const milestoneSection = document.querySelector('#milestone');
+    const milestoneBars = milestoneSection.querySelectorAll('.progress-bar');
+    const milestoneObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          milestoneBars.forEach(bar => {
+            const width = bar.style.width;
+            bar.style.width = '0%';
+            setTimeout(() => {
+              bar.style.transition = 'width 1.2s ease';
+              bar.style.width = width;
+            }, 120);
+          });
+          milestoneObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+
+    milestoneObserver.observe(milestoneSection);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
